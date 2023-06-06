@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -6,10 +6,11 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   templateUrl: './map-page.component.html',
   styleUrls: ['./map-page.component.css']
 })
-export class MapPageComponent implements OnInit {
+export class MapPageComponent{
   public altitud: string="";
   public latitud: string="";
   public hora: string="";
+  public datos: string="";
 
   constructor(private _route:ActivatedRoute, private _router: Router){
     this._route.params.subscribe((params: Params) => {
@@ -23,8 +24,18 @@ export class MapPageComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  guardarDatos(){
+    localStorage.setItem('altitud', JSON.stringify(this.altitud));
+    localStorage.setItem('latitud', JSON.stringify(this.latitud));
+    localStorage.setItem('hora', JSON.stringify(this.hora));
+  }
+
+  recuperarDatos(){
+    this.datos = "Altitud: " + JSON.parse(localStorage.getItem('altitud') || '{}');
+    this.datos += " Latitud: " + JSON.parse(localStorage.getItem('latitud') || '{}');
+    this.datos += " Hora: " + JSON.parse(localStorage.getItem('hora') || '{}');
+    //DEBUG
+    console.log("DATOS DEL LOCALSTORAGE = "+this.datos)
   }
 
 
