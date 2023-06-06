@@ -8,18 +8,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr *ngFor="let coord of coordArray">
        
-        <td>21.934236, </td>
-        <td>-102.317775</td>
-        <td>3:00pm</td>
+        <td>{{coord.altitud}}</td>
+        <td>{{coord.latitud}}</td>
+        <td>{{coord.hora}}</td>
       </tr>
-      <tr>
-        
-        <td>21.934236, </td>
-        <td>-102.317775</td>
-        <td>3:00pm</td>
-      </tr>
+     
    
     </tbody>
   </table>
