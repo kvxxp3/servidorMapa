@@ -12,6 +12,10 @@ const routes: Routes = [
   {
     path: 'map',
     component: MapPageComponent
+  },
+  {
+    path: 'map/:altitud/:latitud/:hora',
+    component: MapPageComponent
   }
 ];
 
