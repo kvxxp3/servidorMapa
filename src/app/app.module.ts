@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapPageComponent } from './map-page/map-page.component';
 import { TablaCoordComponent } from './tabla-coord/tabla-coord.component';
+import { MapApiComponent } from './map-api/map-api.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapPageComponent,
-    TablaCoordComponent
+    TablaCoordComponent,
+    MapApiComponent
   ],
   imports: [
     BrowserModule,
