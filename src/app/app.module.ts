@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MapPageComponent } from './map-page/map-page.component';
 import { TablaCoordComponent } from './tabla-coord/tabla-coord.component';
 import { MapApiComponent } from './map-api/map-api.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MapApiComponent } from './map-api/map-api.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

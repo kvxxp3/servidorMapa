@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DatabaseService } from '../api/database.service';
+import { Coordenadas } from '../interfaces/coordenadas';
 
 
 @Component({
@@ -10,6 +12,12 @@ export class TablaCoordComponent implements OnInit {
 
   objetoJSON:any="";
   coordArray:any[] =[];
+  
+  ListCoor: Coordenadas[] = [];
+  
+  constructor(public dbService: DatabaseService) {
+    this.loadCoor();
+  }
 
   ngOnInit() {
     localStorage.removeItem('array');
@@ -32,6 +40,20 @@ export class TablaCoordComponent implements OnInit {
     this.coordArray = JSON.parse(this.objetoJSON);
   }
 
-  
+  public loadCoor(): void{
+    this.dbService.getCoor().subscribe(
+      (res) => {
+        //variable para guardar la conversion de datos json a string
+        const listString = JSON.stringify(res);
+        //concatena los datos que se reciben uno a uno en listString en el arreglo ListCoor
+        this.ListCoor = JSON.parse(listString);
+        //DEBUG
+        console.log('Coordenadas nuevas = ' + this.ListCoor);
+      },
+      (e) => {
+        console.log('ERROR: ' + e);
+      }
+    );
+  }
 }
 

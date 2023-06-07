@@ -1,6 +1,8 @@
 import {  AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild, Input } from '@angular/core';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
+import { DatabaseService } from '../api/database.service';
+import { Coordenadas } from '../interfaces/coordenadas';
 
 @Component({
   selector: 'app-map-api',
@@ -8,10 +10,13 @@ import 'leaflet-routing-machine';
   styleUrls: ['./map-api.component.css']
 })
 export class MapApiComponent implements OnInit, AfterViewInit, OnDestroy {
+  ListCoor: Coordenadas[] = [];
   @Input() center : L.LatLngExpression = [51.505, -0.09];
   mapRef: any;
   
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2, public dbService: DatabaseService) {
+    this.loadCoor();
+  }
 
   ngOnInit() { }
 
@@ -74,5 +79,21 @@ export class MapApiComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.mapRef.off('click');
+  }
+
+  public loadCoor(): void{
+    this.dbService.getCoor().subscribe(
+      (res) => {
+        //variable para guardar la conversion de datos json a string
+        const listString = JSON.stringify(res);
+        //concatena los datos que se reciben uno a uno en listString en el arreglo ListCoor
+        this.ListCoor = JSON.parse(listString);
+        //DEBUG
+        console.log('Coordenadas nuevas = ' + this.ListCoor);
+      },
+      (e) => {
+        console.log('ERROR: ' + e);
+      }
+    );
   }
 }
