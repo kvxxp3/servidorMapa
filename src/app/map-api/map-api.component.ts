@@ -11,7 +11,7 @@ import { Coordenadas } from '../interfaces/coordenadas';
 })
 export class MapApiComponent implements OnInit, AfterViewInit, OnDestroy {
   ListCoor: Coordenadas[] = [];
-  @Input() center : L.LatLngExpression = [51.505, -0.09];
+  @Input() center : L.LatLngExpression = [21.881381, -102.297014];
   mapRef: any;
   
   constructor(private renderer: Renderer2, public dbService: DatabaseService) {
@@ -30,7 +30,7 @@ export class MapApiComponent implements OnInit, AfterViewInit, OnDestroy {
     }).addTo(map);
 
     //Globo para marcador (pone notas en waypoint)
-    L.marker([51.505, -0.082]).addTo(map).bindPopup("Punto 1").openPopup();
+    //L.marker([51.505, -0.082]).addTo(map).bindPopup("Punto 1").openPopup();
     //Marcadores
     //Punto 1
     //L.marker([51.504, -0.09],{draggable: false}).addTo(map);
@@ -47,12 +47,15 @@ export class MapApiComponent implements OnInit, AfterViewInit, OnDestroy {
     resizeObserver.observe(mapDiv);
 
     //Array con coordenadas
-    var latlngs :any = [
-      [51.505, -0.082],
-      [51.504, -0.09],
-      [51.505, -0.10]
-    ];
 
+    
+    var latlngs :any = [
+      /*[51.505, -0.082],
+      [51.504, -0.09],
+      [51.505, -0.10]*/
+    ];
+ 
+ 
     /*
     Código para poner líneas rígidas en el mapa
     var polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
@@ -72,6 +75,28 @@ export class MapApiComponent implements OnInit, AfterViewInit, OnDestroy {
       addWaypoints: false,
       routeWhileDragging: false
     }).addTo(map);
+ 
+
+    this.ListCoor = [
+      { id:"1",longitud:"21.952514",latitud:"-102.333070",hora:"1"},
+      { id:"2",longitud:"21.940793",latitud:"-102.317207",hora:"2"},
+      { id:"3",longitud:"21.941937",latitud:"-102.325586",hora:"3"},
+     
+    ];
+
+
+    for (var i = 0; i < this.ListCoor.length; i++) {
+      var objCoorde = this.ListCoor[i];
+      var lati = parseFloat(objCoorde .latitud);
+      var longi = parseFloat(objCoorde .longitud);
+      
+      
+      latlngs.push([longi,lati]);
+    }
+   
+    console.log(latlngs);
+    
+
 
     control.setWaypoints(latlngs); //Establece los puntos en el mapa
     control.hide(); //Esconde un "modal" dentro del mapa con la ruta del trayecto
