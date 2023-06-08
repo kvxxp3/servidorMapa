@@ -1,0 +1,7 @@
+.contenedor{
+    background-color: rgb(184, 216, 213);
+    margin: 0;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+}

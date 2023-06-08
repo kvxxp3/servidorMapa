@@ -1,5 +1,13 @@
 table{
-    width: 800px;
-    margin: auto;
+    width: 550px;
+    margin: 20px;
+    background-color: rgb(121, 121, 121);
+    border-collapse:separate;
+    border-spacing: 10;
+    border:solid black 1px;
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius: 5px; 
 }
+
 
