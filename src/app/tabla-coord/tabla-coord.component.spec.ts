@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TablaCoordComponent } from './tabla-coord.component';
 
 describe('TablaCoordComponent', () => {
