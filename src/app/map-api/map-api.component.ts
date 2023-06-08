@@ -58,11 +58,15 @@ export class MapApiComponent implements OnDestroy {
     //divide el array
     for (var i = 0; i < this.ListCoor.length; i++) {
       console.log("Entra for")
-
+      
       var objCoorde = this.ListCoor[i];
       var lati = parseFloat(objCoorde.latitud);
-      var longi = parseFloat(objCoorde.longitud);      
-      
+      var longi = parseFloat(objCoorde.longitud);  
+      var num = parseFloat(objCoorde.id);
+
+      if(num==1){
+        L.marker([longi, lati]).addTo(map).bindPopup("Punto " + num).openPopup();
+      }
       latlngs.push([longi,lati]);
     }
 
