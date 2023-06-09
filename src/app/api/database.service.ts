@@ -10,7 +10,7 @@ export class DatabaseService {
   constructor(private http: HttpClient) { }
 
   public getCoor(){
-    return this.http.get<Coordenadas[]>('http://natestatica:5000/map');
+    return this.http.get<Coordenadas[]>('http://192.168.1.67:5000/map');
   }
 
 }

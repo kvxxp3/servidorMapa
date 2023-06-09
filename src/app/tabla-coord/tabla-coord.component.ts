@@ -27,5 +27,9 @@ export class TablaCoordComponent {
       }
     );
   }
+
+  reload(){
+    window.location.reload();
+  }
 }
 
